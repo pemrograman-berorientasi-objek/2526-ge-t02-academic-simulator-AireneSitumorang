@@ -1,44 +1,43 @@
 package academic.model;
 
 /**
- * @author 12S24058 Airene Situmorang
- * @author 12S24058 Airene Situmorang 
+ * @author 12S24058
  */
 
 public class Student {
-    private String nim;
-    private String name;
-    private int entranceYear; // Angkatan
-    private String studyProgram; // Program Studi
 
-    // Constructor untuk inisialisasi objek Student
-    public Student(String nim, String name, int entranceYear, String studyProgram) {
-        this.nim = nim;
+    private String id; // NIM
+    private String name;
+    private int year; // Angkatan
+    private String major; // Program Studi
+
+    public Student(String id, String name, int year, String major) {
+        this.id = id;
         this.name = name;
-        this.entranceYear = entranceYear;
-        this.studyProgram = studyProgram;
+        this.year = year;
+        this.major = major;
     }
 
-    // --- Getters untuk mengakses data Student ---
-    public String getNim() {
-        return nim;
+    // Getters for all fields
+    public String getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getEntranceYear() {
-        return entranceYear;
+    public int getYear() {
+        return year;
     }
 
-    public String getStudyProgram() {
-        return studyProgram;
+    public String getMajor() {
+        return major;
     }
 
-    // Method untuk mengubah representasi objek Student menjadi string sesuai format output
+    // toString method for desired output format
     @Override
     public String toString() {
-        return nim + "|" + name + "|" + entranceYear + "|" + studyProgram;
+        return id + "|" + name + "|" + year + "|" + major;
     }
 }
