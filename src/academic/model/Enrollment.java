@@ -1,41 +1,36 @@
 package academic.model;
 
-/**
- * @author 12S24058 Airene Situmorang
- * @author 12S24058 Airene Situmorang
- */
-
 public class Enrollment {
     private String courseCode;
-    private String studentNim;
-    private String academicYear; // Contoh: 2021/2022
-    private String semester;     // Contoh: even, odd, short
-    private String grade;        // Defaultnya 'None'
+    private String studentId;
+    private String academicYear;
+    private String semester;
+    private String grade; // Default ke "None" jika tidak ada nilai
 
-    // Konstruktor utama saat pendaftaran dibuat tanpa grade awal
-    public Enrollment(String courseCode, String studentNim, String academicYear, String semester) {
+    public Enrollment(String courseCode, String studentId, String academicYear, String semester) {
         this.courseCode = courseCode;
-        this.studentNim = studentNim;
+        this.studentId = studentId;
         this.academicYear = academicYear;
         this.semester = semester;
-        this.grade = "None"; // Grade defaultnya 'None' saat pendaftaran baru
+        this.grade = "None"; // Default grade as per output example
     }
 
-    // Overload konstruktor untuk kasus jika grade sudah ada saat objek dibuat (opsional)
-    public Enrollment(String courseCode, String studentNim, String academicYear, String semester, String grade) {
+    // Constructor with grade, if needed for future modifications
+    public Enrollment(String courseCode, String studentId, String academicYear, String semester, String grade) {
         this.courseCode = courseCode;
-        this.studentNim = studentNim;
+        this.studentId = studentId;
         this.academicYear = academicYear;
         this.semester = semester;
         this.grade = grade;
     }
 
+    // Getters for all fields
     public String getCourseCode() {
         return courseCode;
     }
 
-    public String getStudentNim() {
-        return studentNim;
+    public String getStudentId() {
+        return studentId;
     }
 
     public String getAcademicYear() {
@@ -50,14 +45,14 @@ public class Enrollment {
         return grade;
     }
 
-    // Metode setter untuk grade, karena grade bisa diubah atau diinput di kemudian hari
+    // Setter for grade, if grade can be updated later
     public void setGrade(String grade) {
         this.grade = grade;
     }
 
-    // Metode toString untuk representasi string dari objek Enrollment
+    // toString method for desired output format
     @Override
     public String toString() {
-        return courseCode + "|" + studentNim + "|" + academicYear + "|" + semester + "|" + grade;
+        return courseCode + "|" + studentId + "|" + academicYear + "|" + semester + "|" + grade;
     }
 }

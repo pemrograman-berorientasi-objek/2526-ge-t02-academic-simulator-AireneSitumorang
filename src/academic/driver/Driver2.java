@@ -1,55 +1,62 @@
 package academic.driver;
 
 /**
- * @author 112S24058 Airene Situmorang
- * @author 12S24058 Airene Situmoranggg
+ * @author 12S24058_AireneSitumorang
  */
-
-
-import academic.model.Student;   // Mengimpor kelas Student dari paket academic.model
-import java.util.Scanner;       // Mengimpor kelas Scanner untuk membaca input pengguna
-import java.util.ArrayList;     // Mengimpor kelas ArrayList karena jumlah mahasiswa tidak pasti
+import academic.model.Student;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Driver2 {
-    // Menggunakan ArrayList untuk menyimpan objek-objek Student
-    // ArrayList lebih fleksibel daripada array statis karena ukurannya bisa bertambah otomatis.
-    private static ArrayList<Student> students = new ArrayList<>();
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in); // Membuat objek Scanner untuk membaca input dari konsol
-        String line; // Variabel untuk menyimpan setiap baris input
+    public static void main(String[] _args) {
 
-        // Loop untuk membaca input baris demi baris hingga pengguna mengetik "---"
-        while (scanner.hasNextLine()) { // Memeriksa apakah ada baris input berikutnya
-            line = scanner.nextLine(); // Membaca satu baris input
+         Scanner input = new Scanner(System.in);
+        List<Student> studentList = new ArrayList<>();
+        
 
-            if (line.equals("---")) { // Jika baris input adalah "---", hentikan proses input
-                break;
+        while (input.hasNextLine()) {
+            String line = input.nextLine();
+
+            if (line.equals("---")) {
+                break; // Stop reading when "---" is encountered
             }
 
-            // Memisahkan string input berdasarkan karakter "#"
-            // Contoh input: 12S20999#Wiro Sableng#2020#Information Systems
-            String[] parts = line.split("#"); 
+            // Simple validation: ensure the line is not empty and contains '#'
+            if (line.isEmpty() || !line.contains("#")) {
+                continue; 
+            }
 
-            // Memastikan input memiliki 4 bagian yang diharapkan (nim, name, entranceYear, studyProgram)
-            if (parts.length == 4) {
-                String nim = parts[0];
-                String name = parts[1];
-                int entranceYear = Integer.parseInt(parts[2]); // Mengubah string angkatan menjadi integer
-                String studyProgram = parts[3];
+            String[] data = line.split("#");
 
-                // Membuat objek Student baru dan menambahkannya ke ArrayList
-                students.add(new Student(nim, name, entranceYear, studyProgram));
+            // Basic check for number of segments
+            if (data.length == 4) {
+                try {
+                    String id = data[0];
+                    String name = data[1];
+                    int year = Integer.parseInt(data[2]);
+                    String major = data[3];
+
+                    Student student = new Student(id, name, year, major);
+                    studentList.add(student);
+                } catch (NumberFormatException e) {
+
+                }
             } else {
-                System.err.println("Format input tidak valid: " + line);
             }
         }
 
-        // Setelah semua input diproses, tampilkan semua student yang telah disimpan
-        for (Student student : students) { // Menggunakan enhanced for loop untuk iterasi ArrayList
-            System.out.println(student.toString()); // Memanggil toString() untuk format output yang diinginkan
+
+        if (studentList.isEmpty()) {
+        } else {
+            for (Student student : studentList) {
+                System.out.println(student); // Uses the overridden toString method
+            }
         }
 
-        scanner.close(); // Menutup objek Scanner untuk mencegah kebocoran sumber daya
+        input.close();
+
     }
+
 }
