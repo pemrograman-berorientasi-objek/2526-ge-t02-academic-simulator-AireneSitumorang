@@ -8,21 +8,28 @@ package academic.model;
 public class Enrollment {
     private String courseCode;
     private String studentNim;
-    private String academicYear; // Tahun Ajaran, contoh: 2021/2022
-    private String semester;     // Semester, contoh: even, odd
-    private String grade;        // Grade, default "None" jika belum ada
+    private String academicYear; // Contoh: 2021/2022
+    private String semester;     // Contoh: even, odd, short
+    private String grade;        // Defaultnya 'None'
 
-    // Constructor untuk inisialisasi objek Enrollment
-    // Grade diinisialisasi sebagai "None" secara default
+    // Konstruktor utama saat pendaftaran dibuat tanpa grade awal
     public Enrollment(String courseCode, String studentNim, String academicYear, String semester) {
         this.courseCode = courseCode;
         this.studentNim = studentNim;
         this.academicYear = academicYear;
         this.semester = semester;
-        this.grade = "None"; // Grade default sesuai permintaan output
+        this.grade = "None"; // Grade defaultnya 'None' saat pendaftaran baru
     }
 
-    // --- Getters untuk mengakses data Enrollment ---
+    // Overload konstruktor untuk kasus jika grade sudah ada saat objek dibuat (opsional)
+    public Enrollment(String courseCode, String studentNim, String academicYear, String semester, String grade) {
+        this.courseCode = courseCode;
+        this.studentNim = studentNim;
+        this.academicYear = academicYear;
+        this.semester = semester;
+        this.grade = grade;
+    }
+
     public String getCourseCode() {
         return courseCode;
     }
@@ -43,7 +50,12 @@ public class Enrollment {
         return grade;
     }
 
-    // Method untuk mengubah representasi objek Enrollment menjadi string sesuai format output
+    // Metode setter untuk grade, karena grade bisa diubah atau diinput di kemudian hari
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    // Metode toString untuk representasi string dari objek Enrollment
     @Override
     public String toString() {
         return courseCode + "|" + studentNim + "|" + academicYear + "|" + semester + "|" + grade;

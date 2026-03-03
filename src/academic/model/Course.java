@@ -5,21 +5,18 @@ package academic.model;
  */
 
 public class Course {
-
     private String code;
     private String name;
-    private int credits;
-    private char grade; // gunakan char untuk grade
+    private int sks;
+    private String grade; // Ini mungkin grade default atau placeholder jika belum ada
 
-    // Constructor
-    public Course(String code, String name, int credits, char grade) {
+    public Course(String code, String name, int sks, String grade) {
         this.code = code;
         this.name = name;
-        this.credits = credits;
+        this.sks = sks;
         this.grade = grade;
     }
 
-    // Getter
     public String getCode() {
         return code;
     }
@@ -28,22 +25,18 @@ public class Course {
         return name;
     }
 
-    public int getCredits() {
-        return credits;
+    public int getSks() {
+        return sks;
     }
 
-    public char getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    // Setter (optional, kalau dibutuhkan)
-    public void setGrade(char grade) {
-        this.grade = grade;
-    }
-
-    // Format output
+    // Metode toString ini berguna untuk memudahkan debugging atau format output
+    // meskipun kita memformat output secara manual di driver
     @Override
     public String toString() {
-        return code + "|" + name + "|" + credits + "|" + grade;
+        return code + "|" + name + "|" + sks + "|" + grade;
     }
 }
