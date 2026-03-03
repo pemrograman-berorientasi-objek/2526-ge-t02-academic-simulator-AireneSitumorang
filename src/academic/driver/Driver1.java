@@ -1,7 +1,7 @@
 package academic.driver;
 
 /**
- * @author 12S24058 Airene Situmorang
+ * @author 12S24058 Airene Situmorangg
  * @author 12S24058 Airene Situmorang
  */  
 
